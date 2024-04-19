@@ -17,7 +17,7 @@ const connectionObject ={
 }
 
 //change the url to the server url
-const socket = io.connect('http://localhost:3000',connectionObject);
+const socket = io.connect('https://eternity-chat.onrender.com',connectionObject);
 export default function Chat()
 {
     const [onlinePeople, setOnlinePeople] = useState({});
