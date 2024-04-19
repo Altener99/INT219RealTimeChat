@@ -15,6 +15,8 @@ const connectionObject ={
     reconnectionDelay: 1000,
     reconnectionAttempts: Infinity,
 }
+
+//change the url to the server url
 const socket = io.connect('http://localhost:3000',connectionObject);
 export default function Chat()
 {
@@ -109,10 +111,10 @@ export default function Chat()
 
         if(file)
         {
-            axios.get('/messages/' + selectedUserId).then(res => {
-
+         setTimeout(() =>{ axios.get('/messages/' + selectedUserId).then(res => {
+                
                 setMessages(res.data);
-            });
+            });},2000);
         }
         else
         {
@@ -152,7 +154,7 @@ export default function Chat()
                 data: reader.result,
 
             })
-
+            
         }
     };
 
@@ -216,9 +218,9 @@ export default function Chat()
                 </svg>
                     EternityChat
                 </div> */}
-
-            <div className='flex-grow'>
-                <Logo/>
+            <Logo/>
+            <div className='flex-grow overflow-scroll scrollbar-webkit'>
+                
                 
                 
                 {Object.keys(onlinePeopleExcludingOurUser).map(id => (
@@ -301,7 +303,7 @@ export default function Chat()
                       
 
                         <div className='relative h-full'>
-                              <div  className='overflow-y-scroll absolute top-0 left-0 right-0 bottom-2'>
+                              <div  className='scrollbar-chat overflow-y-scroll absolute top-0 left-0 right-0 bottom-2'>
                             {messageWithoutDupes.map(message => (
                                 <div key={message._id} className={(message.sender === id ? 'text-right': 'text-left')}>
 

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dotenv  = require('dotenv');
 dotenv.config();
 const jwt = require('jsonwebtoken');
-mongoose.connect('mongodb://localhost:27017/L');
+mongoose.connect('mongodb://localhost:27017/'); //change the url to the server's URLs
 const User = require('./models/user');
 const Message = require('./models/Message');
 const jwtSecret = process.env.JWT_SECRET;
@@ -186,7 +186,7 @@ app.post('/register', async (req, res) => {
 const io = new Server(server, {
 
    
-
+    maxHttpBufferSize: 1e8,
     cors: {
         origin: process.env.CLIENT_URL,
         credentials: true,

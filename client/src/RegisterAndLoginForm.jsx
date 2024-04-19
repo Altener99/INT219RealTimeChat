@@ -1,6 +1,7 @@
 import {useContext, useState} from "react";
 import axios from "axios";
 import {UserContext} from "./UserContext";
+import Logo from "./Logo";
 
 export default function RegisterAndLoginForm()
 {
@@ -14,9 +15,12 @@ export default function RegisterAndLoginForm()
         const {data} = await axios.post(url ,{username, password});
         setLoggedInUsername(username);
         setId(data.id);
+        location.reload();
     }
 
     return (
+        <div className="h-screen flex flex-col">
+            <div className="bg-blue-50"><Logo /></div>
         <div className="bg-blue-50 h-screen flex items-center">
             <form action="" className="w-64 mx-auto mb-12" onSubmit={handleSubmit}>
                 <input value={username} 
@@ -55,6 +59,7 @@ export default function RegisterAndLoginForm()
                    
                 </div>
             </form>
+        </div>
         </div>
     );
 }
